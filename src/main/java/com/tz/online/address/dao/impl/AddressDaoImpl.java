@@ -4,6 +4,7 @@ import com.tz.online.address.dao.IAddressDao;
 import com.tz.online.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -18,10 +19,10 @@ import javax.annotation.Resource;
  * Project: BookStore01.
  */
 @Repository
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
+@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
 public class AddressDaoImpl implements IAddressDao {
     @Resource
-    private org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Resource
     private SessionFactory sessionFactory;
